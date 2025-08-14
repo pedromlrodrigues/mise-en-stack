@@ -20,6 +20,17 @@ class RecipeService {
       },
     };
   }
+
+  async getRecipeById(id) {
+    console.log(id);
+    const recipeEntity = await recipeRepository.findById(id);
+
+    if (!recipeEntity) {
+      return null;
+    }
+
+    return toRecipeDTO(recipeEntity);
+  }
 }
 
 export default new RecipeService();

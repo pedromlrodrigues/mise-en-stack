@@ -61,6 +61,4 @@ class RecipeRepository {
   }
 }
 
-// Export a singleton instance of the repository.
-// This means other files will import the same instance of this class.
 export default new RecipeRepository();
