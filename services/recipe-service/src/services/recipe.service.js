@@ -22,7 +22,6 @@ class RecipeService {
   }
 
   async getRecipeById(id) {
-    console.log(id);
     const recipeEntity = await recipeRepository.findById(id);
 
     if (!recipeEntity) {
@@ -30,6 +29,14 @@ class RecipeService {
     }
 
     return toRecipeDTO(recipeEntity);
+  }
+
+  async createRecipe(recipeData) {
+    const newRecipe = await recipeRepository.create(recipeData);
+
+    await newRecipe.populate('ingredients.ingredient');
+
+    return toRecipeDTO(newRecipe);
   }
 }
 

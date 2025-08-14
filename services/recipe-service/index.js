@@ -12,6 +12,8 @@ connectDB();
 
 const app = express();
 
+app.use(express.json());
+
 app.use('/api/recipes', recipeRoutes);
 
 // Define the port to listen on
