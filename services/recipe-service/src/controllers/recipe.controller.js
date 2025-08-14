@@ -4,10 +4,13 @@ import { createRecipeSchema } from '../validators/recipe.validator.js';
 class RecipeController {
   async getRecipes(req, res) {
     try {
-      const page = parseInt(req.query.page ?? '1');
-      const limit = parseInt(req.query.limit ?? '10');
+      const { page = '1', limit = '10', search } = req.query;
 
-      const recipes = await recipeService.getRecipes({ page, limit });
+      const recipes = await recipeService.getRecipes({
+        page: parseInt(page),
+        limit: parseInt(limit),
+        search,
+      });
 
       if (!recipes) {
         return res.status(404).json({ message: 'Recipes not found' });

@@ -14,11 +14,19 @@ class RecipeRepository {
    * Finds all recipes in the database.
    * @returns {Promise<Array<Document>>} An array of all recipe documents.
    */
-  async findAll({ page, limit }) {
-    // Calculate the number of documents to skip
+  async findAll({ page, limit, search }) {
     const skip = (page - 1) * limit;
+    const query = {};
 
-    return await Recipe.find({}).skip(skip).limit(limit).populate('ingredients.ingredient');
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { keywords: { $regex: search, $options: 'i' } },
+        { ingredientNames: { $regex: search, $options: 'i' } },
+      ];
+    }
+
+    return await Recipe.find(query).skip(skip).limit(limit).populate('ingredients.ingredient');
   }
 
   /**

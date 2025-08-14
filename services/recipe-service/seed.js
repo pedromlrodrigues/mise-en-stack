@@ -42,6 +42,7 @@ const seedDB = async () => {
           { ingredient: acucar._id, quantity: 1.5, unit: 'chávenas' },
         ],
         keywords: ['breakfast'],
+        ingredientNames: [ovo.name, farinha.name, acucar.name],
       },
     ];
 

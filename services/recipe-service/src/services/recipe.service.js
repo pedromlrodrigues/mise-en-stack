@@ -1,11 +1,13 @@
 import recipeRepository from '../repositories/recipe.repository.js';
+import ingredientRepository from '../repositories/ingredient.repository.js';
+
 import { toRecipeDTO } from '../mappers/recipe.mapper.js';
 
 class RecipeService {
   async getRecipes(options) {
-    const { page, limit } = options;
+    const { page, limit, search } = options;
 
-    const recipes = await recipeRepository.findAll({ page, limit });
+    const recipes = await recipeRepository.findAll({ page, limit, search });
     const totalDocuments = await recipeRepository.count();
 
     const recipeDTOs = recipes.map(toRecipeDTO);
@@ -32,10 +34,18 @@ class RecipeService {
   }
 
   async createRecipe(recipeData) {
-    const newRecipe = await recipeRepository.create(recipeData);
+    const ingredientIds = recipeData.ingredients.map((item) => item.ingredient);
+    const ingredients = await ingredientRepository.findManyByIds(ingredientIds);
+    const ingredientNames = ingredients.map((ingredient) => ingredient.name);
+
+    const dataToSave = {
+      ...recipeData,
+      ingredientNames: ingredientNames,
+    };
+
+    const newRecipe = await recipeRepository.create(dataToSave);
 
     await newRecipe.populate('ingredients.ingredient');
-
     return toRecipeDTO(newRecipe);
   }
 }

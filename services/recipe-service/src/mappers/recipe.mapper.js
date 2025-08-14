@@ -19,6 +19,7 @@ function toRecipeDTO(recipeDocument) {
     id: recipeDocument._id,
     name: recipeDocument.name,
     description: recipeDocument.description,
+    keywords: recipeDocument.keywords,
     instructions: recipeDocument.instructions,
     ingredients: ingredients,
     createdAt: recipeDocument.createdAt,
