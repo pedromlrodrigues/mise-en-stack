@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 //  IMPORT MODELS
 import './src/models/ingredient.model.js';
@@ -12,14 +13,13 @@ connectDB();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/recipes', recipeRoutes);
 
-// Define the port to listen on
 const PORT = process.env.PORT || 3000;
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
