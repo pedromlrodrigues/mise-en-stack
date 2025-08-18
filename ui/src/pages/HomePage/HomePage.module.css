@@ -1,0 +1,7 @@
+.mainContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  flex-grow: 1;
+}
