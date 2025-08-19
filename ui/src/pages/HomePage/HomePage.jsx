@@ -6,7 +6,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   const handleSearchSubmit = (searchTerm) => {
-    navigate(`/recipes?search=${encodeURIComponent(searchTerm)}`);
+    navigate(`/recipes?search=${encodeURIComponent(searchTerm)}&page=1`);
   };
   return (
     <>

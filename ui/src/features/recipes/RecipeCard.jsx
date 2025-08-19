@@ -1,0 +1,32 @@
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
+import { Link } from 'react-router-dom';
+import recipeImageDefault from '../../assets/recipe-image-default.png';
+
+function RecipeCard({ recipe }) {
+  return (
+    <Card sx={{ height: '100%' }}>
+      <CardActionArea component={Link} to={`/recipes/${recipe.id}`}>
+        <CardMedia
+          component="img"
+          height="140"
+          image={recipe.photoUrl || recipeImageDefault}
+          alt={recipe.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {recipe.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {recipe.keywords?.join(', ')}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+}
+
+export default RecipeCard;
