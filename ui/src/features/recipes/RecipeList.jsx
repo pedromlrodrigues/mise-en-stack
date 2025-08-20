@@ -1,15 +1,19 @@
-import Grid from '@mui/material/Grid';
 import RecipeCard from './RecipeCard';
+import Box from '@mui/material/Box';
 
 function RecipeList({ recipes }) {
   return (
-    <Grid container spacing={4}>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gap: 3,
+      }}
+    >
       {recipes.map((recipe) => (
-        <Grid item xs={12} sm={6} md={4} key={recipe.id}>
-          <RecipeCard recipe={recipe} />
-        </Grid>
+        <RecipeCard recipe={recipe} />
       ))}
-    </Grid>
+    </Box>
   );
 }
 

@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchRecipes } from '../../api/recipeApi';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import RecipeCardSkeleton from '../../features/recipes/RecipeCardSkeleton';
+import RecipeListSkeleton from '../../features/recipes/RecipeListSkeleton';
 import ResultsFooter from '../../features/recipes/ResultsFooter';
 import RecipeList from '../../features/recipes/RecipeList';
-import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -58,18 +57,14 @@ function RecipesPage() {
   return (
     <Box className={styles.mainContent}>
       <SearchBar initialValue={searchTermFromUrl} onSubmit={handleSearchSubmit} />
-
+      {!loading && !error && recipes.length === 0 && searchTermFromUrl && (
+        <Typography sx={{ marginTop: '2rem' }}>
+          No recipes found for "{searchTermFromUrl}".
+        </Typography>
+      )}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <Box className={styles.resultsContainer}>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {loading && (
-          <Grid container spacing={4}>
-            {Array.from(new Array(6)).map((_, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <RecipeCardSkeleton />
-              </Grid>
-            ))}
-          </Grid>
-        )}
+        {loading && <RecipeListSkeleton />}
         {!loading && !error && (
           <>
             <RecipeList recipes={recipes} />
@@ -88,9 +83,6 @@ function RecipesPage() {
               <Box sx={{ flex: 1 }}></Box>
             </Box>
           </>
-        )}
-        {!loading && !error && recipes.length === 0 && searchTermFromUrl && (
-          <Typography>No recipes found for "{searchTermFromUrl}".</Typography>
         )}
       </Box>
     </Box>

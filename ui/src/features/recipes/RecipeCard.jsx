@@ -17,10 +17,18 @@ function RecipeCard({ recipe }) {
           alt={recipe.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            component="div"
+            sx={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
             {recipe.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body3" color="text.secondary">
             {recipe.keywords?.join(', ')}
           </Typography>
         </CardContent>

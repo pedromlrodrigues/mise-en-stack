@@ -13,6 +13,9 @@ const theme = createTheme({
       },
     },
     MuiButtonBase: {
+      styleOverrides: {
+        root: { height: '100%' },
+      },
       defaultProps: {
         disableRipple: true,
       },
@@ -57,6 +60,7 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          backgroundColor: '#ffffff',
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '#333333',
           },
