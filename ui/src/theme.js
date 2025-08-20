@@ -13,6 +13,9 @@ const theme = createTheme({
       },
     },
     MuiButtonBase: {
+      styleOverrides: {
+        root: { height: '100%' },
+      },
       defaultProps: {
         disableRipple: true,
       },
@@ -50,6 +53,38 @@ const theme = createTheme({
           '&:hover::after': {
             transform: 'scaleX(1)',
             transformOrigin: 'bottom left',
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#ffffff',
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#333333',
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused': {
+            color: '#333333',
+          },
+        },
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            backgroundColor: '#333333',
+            color: '#ffffff',
+            '&:hover': {
+              backgroundColor: '#555555',
+            },
           },
         },
       },

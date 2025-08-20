@@ -1,8 +1,14 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export async function searchRecipes(searchTerm) {
+export async function searchRecipes(searchTerm, page = 1) {
   try {
-    const response = await fetch(`${BASE_URL}/recipes?search=${encodeURIComponent(searchTerm)}`);
+    let url = `${BASE_URL}/recipes?page=${page}`;
+
+    if (searchTerm) {
+      url += `&search=${encodeURIComponent(searchTerm)}`;
+    }
+
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
