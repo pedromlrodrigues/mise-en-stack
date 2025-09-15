@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import styles from './HomePage.module.css';
+
 import backgroundImage from '../../assets/kitchen-tools-bg.png';
+import SearchBar from '../../components/SearchBar/SearchBar';
+
+import styles from './HomePage.module.css';
 
 function HomePage() {
   const navigate = useNavigate();

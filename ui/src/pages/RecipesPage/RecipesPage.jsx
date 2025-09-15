@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
-import { getRecipes } from '../../api/recipeApi';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import RecipeListSkeleton from '../../features/recipes/RecipeListSkeleton';
-import ResultsFooter from '../../features/recipes/ResultsFooter';
-import RecipeList from '../../features/recipes/RecipeList';
+
+import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+
+import { getRecipes } from '../../api/recipeApi';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import RecipeList from '../../features/recipes/RecipeList';
+import RecipeListSkeleton from '../../features/recipes/RecipeListSkeleton';
+import ResultsFooter from '../../features/recipes/ResultsFooter';
+
 import styles from './RecipesPage.module.css';
 
 function RecipesPage() {

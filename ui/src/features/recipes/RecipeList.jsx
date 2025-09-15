@@ -1,5 +1,6 @@
-import RecipeCard from './RecipeCard';
 import Box from '@mui/material/Box';
+
+import RecipeCard from './RecipeCard';
 
 function RecipeList({ recipes }) {
   return (

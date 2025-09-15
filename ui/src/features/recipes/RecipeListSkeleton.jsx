@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+
 import RecipeCardSkeleton from './RecipeCardSkeleton';
 
 function RecipeListSkeleton({ count = 10 }) {
