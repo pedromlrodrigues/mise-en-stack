@@ -11,7 +11,7 @@ function RecipeList({ recipes }) {
       }}
     >
       {recipes.map((recipe) => (
-        <RecipeCard recipe={recipe} />
+        <RecipeCard recipe={recipe} key={recipe.id} />
       ))}
     </Box>
   );

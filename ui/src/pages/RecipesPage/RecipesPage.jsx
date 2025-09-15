@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { searchRecipes } from '../../api/recipeApi';
+import { getRecipes } from '../../api/recipeApi';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import RecipeListSkeleton from '../../features/recipes/RecipeListSkeleton';
 import ResultsFooter from '../../features/recipes/ResultsFooter';
@@ -33,7 +33,7 @@ function RecipesPage() {
       setLoading(true);
       setError(null);
       try {
-        const data = await searchRecipes(searchTermFromUrl);
+        const data = await getRecipes(searchTermFromUrl);
         setRecipes(data.data);
         setPaginationInfo(data.pagination);
       } catch (err) {

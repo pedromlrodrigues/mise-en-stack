@@ -18,10 +18,10 @@ function Header() {
 
           <Box sx={{ display: 'flex', justifyContent: 'center', flex: 1, gap: '1rem' }}>
             <Button component={NavLink} to="/recipes">
-              Recipes
+              Receitas
             </Button>
             <Button component={NavLink} to="/ingredients">
-              Ingredients
+              Ingredientes
             </Button>
           </Box>
           <Box sx={{ flex: 1 }} />
