@@ -9,19 +9,22 @@ function Header() {
   return (
     <Box sx={{ padding: '1rem' }}>
       <AppBar position="static" elevation={0}>
-        <Toolbar sx={{ gap: '1rem' }}>
-          <div style={{ flexGrow: 1 }}>
+        <Toolbar>
+          <div style={{ flex: 1 }}>
             <Link to="/">
               <img src={peterLimzLogo} alt="Peter Limz Logo" style={{ height: '90px' }} />
             </Link>
           </div>
 
-          <Button component={NavLink} to="/recipes">
-            Recipes
-          </Button>
-          <Button component={NavLink} to="/ingredients">
-            Ingredients
-          </Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center', flex: 1, gap: '1rem' }}>
+            <Button component={NavLink} to="/recipes">
+              Receitas
+            </Button>
+            <Button component={NavLink} to="/ingredients">
+              Ingredientes
+            </Button>
+          </Box>
+          <Box sx={{ flex: 1 }} />
         </Toolbar>
       </AppBar>
     </Box>

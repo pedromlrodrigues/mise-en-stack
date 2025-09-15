@@ -20,7 +20,7 @@ function toRecipeDTO(recipeDocument) {
     name: recipeDocument.name,
     description: recipeDocument.description,
     keywords: recipeDocument.keywords,
-    instructions: recipeDocument.instructions,
+    preparationSections: recipeDocument.preparationSections,
     ingredients: ingredients,
     createdAt: recipeDocument.createdAt,
   };

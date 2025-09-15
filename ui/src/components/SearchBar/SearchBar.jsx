@@ -17,8 +17,6 @@ function SearchBar({ initialValue = '', onSubmit }) {
   const handleSearch = async (event) => {
     event.preventDefault();
 
-    if (!searchTerm.trim()) return;
-
     onSubmit(searchTerm);
   };
 
