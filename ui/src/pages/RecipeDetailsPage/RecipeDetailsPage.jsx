@@ -50,7 +50,7 @@ function RecipeDetailsPage() {
 
   return (
     <Box sx={{ p: 3, maxWidth: '90vw', width: '100%', mx: 'auto' }}>
-      <Button startIcon={<ArrowBackIcon />} onClick={handleGoBack} sx={{ mb: 3 }}>
+      <Button startIcon={<ArrowBackIcon />} onClick={handleGoBack} sx={{ mb: 1 }}>
         Voltar a Receitas
       </Button>
       <Typography variant="h3" component="h1" gutterBottom>
