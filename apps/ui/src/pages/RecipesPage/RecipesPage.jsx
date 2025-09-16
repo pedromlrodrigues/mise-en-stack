@@ -61,7 +61,9 @@ function RecipesPage() {
   };
 
   const handleViewRecipeDetails = (recipeId) => {
-    navigate(`/recipes/${recipeId}`, { state: { prevSearch: location.search } });
+    navigate(`/recipes/${recipeId}`, {
+      state: { prevSearch: location.search },
+    });
   };
 
   return (
