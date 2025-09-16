@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
+
 import { useParams } from 'react-router-dom';
-import { getRecipeById } from '../../api/recipeApi';
-import Typography from '@mui/material/Typography';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+
+import { getRecipeById } from '../../api/recipeApi';
 import recipeImageDefault from '../../assets/recipe-image-default.png';
+import RecipeDetailsSkeleton from '../../features/recipes/RecipeDetailsSkeleton';
 
 function RecipeDetailsPage() {
   const { recipeId } = useParams();
@@ -31,7 +35,7 @@ function RecipeDetailsPage() {
     fetchRecipe();
   }, [recipeId]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <RecipeDetailsSkeleton />;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (!recipe) return <p>Recipe not found.</p>;
 
