@@ -11,7 +11,15 @@ import recipeImageDefault from '../../assets/recipe-image-default.png';
 function RecipeCard({ recipe, onViewDetails }) {
   return (
     <Card sx={{ height: '100%' }}>
-      <CardActionArea onClick={onViewDetails}>
+      <CardActionArea
+        onClick={onViewDetails}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+        }}
+      >
         <CardMedia
           component="img"
           height="140"
