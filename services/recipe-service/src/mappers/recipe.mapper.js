@@ -9,20 +9,23 @@ function toRecipeDTO(recipeDocument) {
     return null;
   }
 
-  const ingredients = recipeDocument.ingredients?.map((item) => ({
-    name: item.ingredient.name,
-    quantity: item.quantity,
-    unit: item.unit,
-  }));
-
   return {
     id: recipeDocument._id,
     name: recipeDocument.name,
     description: recipeDocument.description,
     keywords: recipeDocument.keywords,
-    preparationSections: recipeDocument.preparationSections,
-    ingredients: ingredients,
-    createdAt: recipeDocument.createdAt,
+    preparationSections: recipeDocument.preparationSections.map((section) => ({
+      title: section.title,
+      steps: section.steps,
+    })),
+    ingredientSections: recipeDocument.ingredientSections.map((section) => ({
+      title: section.title,
+      ingredients: section.ingredients.map((item) => ({
+        name: item.ingredient.name,
+        unit: item.unit,
+        quantity: item.quantity,
+      })),
+    })),
   };
 }
 

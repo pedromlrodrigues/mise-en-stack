@@ -9,8 +9,8 @@ const ingredientSchema = Joi.object({
 const createRecipeSchema = Joi.object({
   name: Joi.string().min(3).max(100).required(),
   description: Joi.string().min(10).required(),
-  instructions: Joi.string().min(20).required(),
-  ingredients: Joi.array().items(ingredientSchema).min(1).required(),
+  preparationSections: Joi.array().min(1).required(),
+  ingredientSections: Joi.array().items().min(1).required(),
 });
 
 export { createRecipeSchema };

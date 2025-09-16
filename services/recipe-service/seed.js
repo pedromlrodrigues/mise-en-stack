@@ -38,10 +38,14 @@ const seedDB = async () => {
             ],
           },
         ],
-        ingredients: [
-          { ingredient: ovo._id, quantity: 3, unit: 'unidades' },
-          { ingredient: farinha._id, quantity: 2, unit: 'chávenas' },
-          { ingredient: acucar._id, quantity: 1.5, unit: 'chávenas' },
+        ingredientSections: [
+          {
+            ingredients: [
+              { ingredient: ovo._id, quantity: 3, unit: 'unidades' },
+              { ingredient: farinha._id, quantity: 2, unit: 'chávenas' },
+              { ingredient: acucar._id, quantity: 1.5, unit: 'chávenas' },
+            ],
+          },
         ],
         keywords: ['breakfast'],
         ingredientNames: [ovo.name, farinha.name, acucar.name],
@@ -59,10 +63,23 @@ const seedDB = async () => {
             steps: ['Tempere com alegria.', 'Aqueça uma frigideira e sele a carne.'],
           },
         ],
-        ingredients: [
-          { ingredient: ovo._id, quantity: 3, unit: 'unidades' },
-          { ingredient: farinha._id, quantity: 2, unit: 'chávenas' },
-          { ingredient: acucar._id, quantity: 1.5, unit: 'chávenas' },
+        ingredientSections: [
+          {
+            title: 'Para o arroz:',
+            ingredients: [
+              { ingredient: ovo._id, quantity: 3, unit: 'unidades' },
+              { ingredient: farinha._id, quantity: 2, unit: 'chávenas' },
+              { ingredient: acucar._id, quantity: 1.5, unit: 'chávenas' },
+            ],
+          },
+          {
+            title: 'Para a carne:',
+            ingredients: [
+              { ingredient: ovo._id, quantity: 3, unit: 'unidades' },
+              { ingredient: farinha._id, quantity: 2, unit: 'chávenas' },
+              { ingredient: acucar._id, quantity: 1.5, unit: 'chávenas' },
+            ],
+          },
         ],
         keywords: ['breakfast'],
         ingredientNames: [ovo.name, farinha.name, acucar.name],

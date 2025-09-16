@@ -26,7 +26,10 @@ class RecipeRepository {
       ];
     }
 
-    return await Recipe.find(query).skip(skip).limit(limit).populate('ingredients.ingredient');
+    return await Recipe.find(query)
+      .skip(skip)
+      .limit(limit)
+      .populate('ingredientSections.ingredients.ingredient');
   }
 
   /**
@@ -45,7 +48,7 @@ class RecipeRepository {
   async findById(id) {
     // The .populate() method is crucial here. It tells Mongoose to look up the IDs
     // in the 'ingredients.ingredient' path and replace them with the actual ingredient documents.
-    return await Recipe.findById(id).populate('ingredients.ingredient');
+    return await Recipe.findById(id).populate('ingredientSections.ingredients.ingredient');
   }
 
   /**

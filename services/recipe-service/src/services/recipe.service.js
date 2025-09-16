@@ -34,8 +34,11 @@ class RecipeService {
   }
 
   async createRecipe(recipeData) {
-    const ingredientIds = recipeData.ingredients.map((item) => item.ingredient);
-    const ingredients = await ingredientRepository.findManyByIds(ingredientIds);
+    const ingredientIds = recipeData.ingredientSections.flatMap((item) =>
+      item.ingredients.map((ingredient) => ingredient.ingredient)
+    );
+    const uniqueIngredientIds = [...new Set(ingredientIds)];
+    const ingredients = await ingredientRepository.findManyByIds(uniqueIngredientIds);
     const ingredientNames = ingredients.map((ingredient) => ingredient.name);
 
     const dataToSave = {
@@ -45,7 +48,8 @@ class RecipeService {
 
     const newRecipe = await recipeRepository.create(dataToSave);
 
-    await newRecipe.populate('ingredients.ingredient');
+    await newRecipe.populate('ingredientSections.ingredients.ingredient');
+
     return toRecipeDTO(newRecipe);
   }
 }

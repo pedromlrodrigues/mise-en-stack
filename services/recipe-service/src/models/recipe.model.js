@@ -10,21 +10,25 @@ const recipeSchema = new Schema(
       },
     ],
     keywords: [{ type: String, required: true }],
-    ingredients: [
+    ingredientSections: [
       {
-        ingredient: {
-          type: Schema.Types.ObjectId,
-          ref: 'Ingredient',
-          required: true,
-        },
-        quantity: {
-          type: Number,
-          required: true,
-        },
-        unit: {
-          type: String,
-          required: true,
-        },
+        title: { type: String },
+        ingredients: [
+          {
+            ingredient: {
+              type: Schema.Types.ObjectId,
+              ref: 'Ingredient',
+              required: true,
+            },
+            quantity: {
+              type: Number,
+            },
+            unit: {
+              type: String,
+              required: true,
+            },
+          },
+        ],
       },
     ],
     ingredientNames: [String],

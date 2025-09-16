@@ -63,10 +63,21 @@ function RecipeDetailsPage() {
             Ingredientes
           </Typography>
           <List>
-            {recipe.ingredients.map((item, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemText primary={`${item.quantity} ${item.unit} ${item.name}`} />
-              </ListItem>
+            {recipe.ingredientSections.map((section, sectionIndex) => (
+              <Box key={sectionIndex} sx={{ paddingBottom: '2rem' }}>
+                <Typography variant="h6" component="h3" gutterBottom>
+                  {section.title}
+                </Typography>
+                <List disablePadding>
+                  {section.ingredients.map((ingredient, ingredientIndex) => (
+                    <ListItem key={ingredientIndex} disablePadding>
+                      <ListItemText
+                        primary={`${ingredient.quantity} ${ingredient.unit} ${ingredient.name}`}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
             ))}
           </List>
         </Grid>
