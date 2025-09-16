@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 
 import RecipeCard from './RecipeCard';
 
-function RecipeList({ recipes }) {
+function RecipeList({ recipes, onViewDetails }) {
   return (
     <Box
       sx={{
@@ -12,7 +12,11 @@ function RecipeList({ recipes }) {
       }}
     >
       {recipes.map((recipe) => (
-        <RecipeCard recipe={recipe} key={recipe.id} />
+        <RecipeCard
+          recipe={recipe}
+          key={recipe.id}
+          onViewDetails={() => onViewDetails(recipe.id)}
+        />
       ))}
     </Box>
   );

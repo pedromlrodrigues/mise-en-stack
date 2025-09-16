@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -15,6 +17,8 @@ import RecipeDetailsSkeleton from '../../features/recipes/RecipeDetailsSkeleton'
 
 function RecipeDetailsPage() {
   const { recipeId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,12 +39,20 @@ function RecipeDetailsPage() {
     fetchRecipe();
   }, [recipeId]);
 
+  const handleGoBack = () => {
+    const prevSearch = location.state?.prevSearch || '';
+    navigate(`/recipes${prevSearch}`); // Navigate back to /recipes with the saved search params
+  };
+
   if (loading) return <RecipeDetailsSkeleton />;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (!recipe) return <p>Recipe not found.</p>;
 
   return (
     <Box sx={{ p: 3, maxWidth: '90vw', width: '100%', mx: 'auto' }}>
+      <Button startIcon={<ArrowBackIcon />} onClick={handleGoBack} sx={{ mb: 3 }}>
+        Voltar a Receitas
+      </Button>
       <Typography variant="h3" component="h1" gutterBottom>
         {recipe.name}
       </Typography>

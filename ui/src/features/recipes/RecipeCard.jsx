@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 
 import recipeImageDefault from '../../assets/recipe-image-default.png';
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, onViewDetails }) {
   return (
     <Card sx={{ height: '100%' }}>
-      <CardActionArea component={Link} to={`/recipes/${recipe.id}`}>
+      <CardActionArea onClick={onViewDetails}>
         <CardMedia
           component="img"
           height="140"

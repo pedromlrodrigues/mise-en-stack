@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
@@ -15,6 +15,8 @@ import ResultsFooter from '../../features/recipes/ResultsFooter';
 import styles from './RecipesPage.module.css';
 
 function RecipesPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [recipes, setRecipes] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({});
@@ -58,6 +60,10 @@ function RecipesPage() {
     setSearchParams({ search: newSearchTerm, page: 1 });
   };
 
+  const handleViewRecipeDetails = (recipeId) => {
+    navigate(`/recipes/${recipeId}`, { state: { prevSearch: location.search } });
+  };
+
   return (
     <Box className={styles.mainContent}>
       <SearchBar initialValue={searchTermFromUrl} onSubmit={handleSearchSubmit} />
@@ -71,7 +77,7 @@ function RecipesPage() {
         {loading && <RecipeListSkeleton />}
         {!loading && !error && (
           <>
-            <RecipeList recipes={recipes} />
+            <RecipeList recipes={recipes} onViewDetails={handleViewRecipeDetails} />
             <Box className={styles.resultsFooter}>
               <ResultsFooter paginationInfo={paginationInfo} dataLength={recipes.length} />
               {paginationInfo.totalPages > 1 && (
