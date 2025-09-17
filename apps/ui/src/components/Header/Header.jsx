@@ -1,8 +1,10 @@
+import { Link, NavLink } from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import { Link, NavLink } from 'react-router-dom';
+import Toolbar from '@mui/material/Toolbar';
+
 import peterLimzLogo from '../../assets/peter-limz-logo.svg';
 
 function Header() {

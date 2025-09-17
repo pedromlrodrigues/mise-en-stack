@@ -13,11 +13,7 @@ function HomePage() {
   };
   return (
     <main className={styles.mainContent}>
-      <img
-        src={backgroundImage}
-        alt="" // Alt text is empty as the image is purely decorative
-        className={styles.backgroundImage}
-      />
+      <img src={backgroundImage} alt="" className={styles.backgroundImage} />
       <SearchBar onSubmit={handleSearchSubmit} />
     </main>
   );
