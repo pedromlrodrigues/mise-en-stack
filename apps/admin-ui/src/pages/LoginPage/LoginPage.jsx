@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { Box, TextField, Button, Typography, Paper, Alert, CircularProgress } from '@mui/material';
 
-import { loginApi } from '../api/authApi';
-import { useAuth } from '../hooks/useAuth';
+import { loginApi } from '../../api/authApi';
+import { useAuth } from '../../hooks/useAuth';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
