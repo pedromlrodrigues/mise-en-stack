@@ -7,6 +7,7 @@ import "./src/models/recipe.model.js";
 import connectDB from "./src/config/database.js";
 import authRoutes from "./src/routes/auth.routes.js";
 import recipeRoutes from "./src/routes/recipe.routes.js";
+import ingredientRoutes from "./src/routes/ingredient.routes.js";
 
 connectDB();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/recipes", recipeRoutes);
+app.use("/api/ingredients", ingredientRoutes);
 
 const PORT = process.env.PORT || 3000;
 

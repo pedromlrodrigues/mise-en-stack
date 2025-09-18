@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 const recipeSchema = new Schema(
   {
@@ -17,15 +17,11 @@ const recipeSchema = new Schema(
           {
             ingredient: {
               type: Schema.Types.ObjectId,
-              ref: 'Ingredient',
+              ref: "Ingredient",
               required: true,
             },
             quantity: {
               type: Number,
-            },
-            unit: {
-              type: String,
-              required: true,
             },
           },
         ],
@@ -40,4 +36,4 @@ recipeSchema.index({ name: 1 });
 recipeSchema.index({ keywords: 1 });
 recipeSchema.index({ ingredientNames: 1 });
 
-export default model('Recipe', recipeSchema);
+export default model("Recipe", recipeSchema);

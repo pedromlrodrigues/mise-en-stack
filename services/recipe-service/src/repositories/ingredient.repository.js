@@ -1,13 +1,36 @@
-import Ingredient from '../models/ingredient.model.js';
+import Ingredient from "../models/ingredient.model.js";
 
 class IngredientRepository {
   /**
-   * Finds multiple ingredient documents by an array of their unique IDs.
-   * @param {string[]} ids - An array of ingredient ID strings to search for.
-   * @returns {Promise<Document[]>} A promise that resolves to an array of the found ingredient documents.
+   * Finds all ingredients in the database.
+   * @returns {Promise<Array<Document>>} An array of all ingredient documents.
    */
-  async findManyByIds(ids) {
-    return await Ingredient.find({ _id: { $in: ids } });
+  async findAll({ page, limit, search }) {
+    const skip = (page - 1) * limit;
+    const query = {};
+
+    if (search) {
+      query.name = { $regex: search, $options: "i" };
+    }
+
+    return await Ingredient.find(query).skip(skip).limit(limit);
+  }
+
+  /**
+   * Finds a single ingredient by its unique ID.
+   * @param {string} id - The ID of the ingredient to find.
+   * @returns {Promise<Document|null>} The found ingredient document, or null if not found.
+   */
+  async findById(id) {
+    return await Ingredient.findById(id);
+  }
+
+  /**
+   * Counts the total number of documents in the collection.
+   * @returns {Promise<number>} The total number of recipes.
+   */
+  async count() {
+    return await Ingredient.countDocuments();
   }
 }
 

@@ -7,7 +7,6 @@ import { Box, CircularProgress } from '@mui/material';
 
 import { AuthContext } from './authContext';
 
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('adminToken') || null);
@@ -52,7 +51,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('adminToken', authToken);
       setToken(authToken);
       setUser(userData);
-      navigate('/admin/dashboard');
+      navigate('/recipes');
     },
     [navigate]
   );
@@ -61,14 +60,22 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('adminToken');
     setToken(null);
     setUser(null);
-    navigate('/admin/login');
+    navigate('/');
   }, [navigate]);
 
   const isAuthenticated = !!token && !!user;
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', bgcolor: 'background.default' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100vh',
+          bgcolor: 'background.default',
+        }}
+      >
         <CircularProgress />
       </Box>
     );

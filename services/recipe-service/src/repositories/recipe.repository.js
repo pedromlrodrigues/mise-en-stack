@@ -1,4 +1,4 @@
-import Recipe from '../models/recipe.model.js';
+import Recipe from "../models/recipe.model.js";
 
 class RecipeRepository {
   /**
@@ -20,24 +20,16 @@ class RecipeRepository {
 
     if (search) {
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { keywords: { $regex: search, $options: 'i' } },
-        { ingredientNames: { $regex: search, $options: 'i' } },
+        { name: { $regex: search, $options: "i" } },
+        { keywords: { $regex: search, $options: "i" } },
+        { ingredientNames: { $regex: search, $options: "i" } },
       ];
     }
 
     return await Recipe.find(query)
       .skip(skip)
       .limit(limit)
-      .populate('ingredientSections.ingredients.ingredient');
-  }
-
-  /**
-   * Counts the total number of documents in the collection.
-   * @returns {Promise<number>} The total number of recipes.
-   */
-  async count() {
-    return await Recipe.countDocuments();
+      .populate("ingredientSections.ingredients.ingredient");
   }
 
   /**
@@ -46,9 +38,9 @@ class RecipeRepository {
    * @returns {Promise<Document|null>} The found recipe document, or null if not found.
    */
   async findById(id) {
-    // The .populate() method is crucial here. It tells Mongoose to look up the IDs
-    // in the 'ingredients.ingredient' path and replace them with the actual ingredient documents.
-    return await Recipe.findById(id).populate('ingredientSections.ingredients.ingredient');
+    return await Recipe.findById(id).populate(
+      "ingredientSections.ingredients.ingredient"
+    );
   }
 
   /**
@@ -58,7 +50,6 @@ class RecipeRepository {
    * @returns {Promise<Document|null>} The updated recipe document.
    */
   async updateById(id, updateData) {
-    // The { new: true } option ensures that the method returns the document *after* the update has been applied.
     return await Recipe.findByIdAndUpdate(id, updateData, { new: true });
   }
 
@@ -69,6 +60,14 @@ class RecipeRepository {
    */
   async deleteById(id) {
     return await Recipe.findByIdAndDelete(id);
+  }
+
+  /**
+   * Counts the total number of documents in the collection.
+   * @returns {Promise<number>} The total number of recipes.
+   */
+  async count() {
+    return await Recipe.countDocuments();
   }
 }
 
